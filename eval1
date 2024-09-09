@@ -1,0 +1,17 @@
+movies = [{"title": "Movie1", "available": True}, {"title": "Movie2", "available": True}]
+customers = {}
+rentals = []
+
+def rent_movie(customer_id, movie_title):
+    for movie in movies:
+        if movie["title"] == movie_title and movie["available"]:
+            movie["available"] = False
+            rentals.append({"customer_id": customer_id, "movie_title": movie_title})
+            print(f"Movie '{movie_title}' rented to customer {customer_id}")
+            return
+    print(f"Movie '{movie_title}' is not available")
+
+def return_movie(customer_id, movie_title):
+    for rental in rentals:
+        if rental["customer_id"] == customer_id and rental["movie_title"] == movie_title:
+            for movie in movies:
